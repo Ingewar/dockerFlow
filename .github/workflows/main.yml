@@ -1,0 +1,8 @@
+on: [push]
+
+jobs:
+    fetch:
+      runs-on: ubuntu-latest
+      name: google fetch
+      steps:
+        - uses: ./.github/actions/fetch

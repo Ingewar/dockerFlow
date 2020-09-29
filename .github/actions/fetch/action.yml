@@ -1,0 +1,8 @@
+name: Fetch Action
+description: fetch something
+
+runs:
+  using: "docker"
+  image: "../../../Dockerfile"
+  args:
+      - "node src/index.js"
