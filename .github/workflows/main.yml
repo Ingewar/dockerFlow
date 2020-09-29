@@ -6,4 +6,4 @@ jobs:
       name: google fetch
       steps:
         - uses: actions/checkout@v2
-        - uses: ./.github/actions/fetch
+        - uses: .github/actions/fetch
