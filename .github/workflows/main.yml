@@ -12,7 +12,7 @@ jobs:
       steps:
         - uses: 8398a7/action-slack@v3
           with:
-            status: 'some status'
+            status: 'success'
             fields: all
           env:
             SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
