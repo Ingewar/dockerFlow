@@ -10,4 +10,4 @@ jobs:
         - uses: ./.github/actions/slack-notifications
           with:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-            MESSAGE: 'testing'
+            MESSAGE: 'testing\n GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID'
