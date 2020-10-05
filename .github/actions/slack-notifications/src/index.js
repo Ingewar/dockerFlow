@@ -14,19 +14,12 @@ try {
               text: message
           }
       };
-      
-      request.post(options, (err, res, body) => {
-          if (err) {
-              return console.log(err);
-          }
-          console.log(`Status: ${res.statusCode}`);
-          console.log(body);
-      });
 
       fetch(slackWebhookUrl, {
           method: 'POST',
           body: options
-      }).then(res => console.info(res))
+      })
+        .then(res => console.info(res))
         .catch(e => {
             console.error(e)
             throw(e);
