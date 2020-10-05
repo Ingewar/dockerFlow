@@ -1,23 +1,21 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
 const fetch = require('node-fetch');
 
 try {
-    const slackWebhookUrl = core.getInput('SLACK_WEBHOOK');
-    const message = core.getInput('MESSAGE');
+    const slackWebhookUrl = process.env.SLACK_WEBHOOK || core.getInput('SLACK_WEBHOOK');
+    const message = process.env.MESSAGE || core.getInput('MESSAGE');
   
     if (!slackWebhookUrl || !message) {
         console.error('Invalid input');
     } else {
       const options = {
-          body: {
-              text: message
-          }
+        text: message
       };
 
       fetch(slackWebhookUrl, {
           method: 'POST',
-          body: options
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(options)
       })
         .then(res => console.info(res))
         .catch(e => {
