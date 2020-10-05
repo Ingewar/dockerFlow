@@ -7,3 +7,7 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - uses: ./.github/actions/fetch
+        - uses: ./.github/actions/slack-notifications
+          with:
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+            MESSAGE: 'testing'

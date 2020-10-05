@@ -1,0 +1,17 @@
+name: Send slack notifications
+description: send notification to webhook
+
+inputs:
+    SLACK_WEBHOOK:
+      description: 'Slack url webhook'
+      required: true
+      default: ''
+    MESSAGE:
+      description: 'message send to a channel'
+      required: true
+      default: 'Hello world!'
+
+runs:
+  using: node12
+  main: src/index.js
+  
