@@ -20,5 +20,5 @@ jobs:
       if: ${{ true }}
       needs: [fetch, failed-job]
       steps:
-        - run: echo ${{ GITHUB_REPOSITORY }}
+        - run: echo ${{ env.GITHUB_REPOSITORY }}
     
