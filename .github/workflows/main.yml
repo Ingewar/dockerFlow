@@ -3,12 +3,14 @@ on: [push]
 jobs:
     fetch:
       runs-on: ubuntu-latest
+      continue-on-error: ${{ true }}
       name: google fetch
       steps:
         - uses: actions/checkout@v2
         - uses: ./.github/actions/fetch
     failed-job:
       runs-on: ubuntu-latest
+      continue-on-error: ${{ true }}
       name: job that always fails
       steps:
         - name: exit 1
