@@ -1,13 +1,6 @@
 on: [push]
 
 jobs:
-    fetch:
-      runs-on: ubuntu-latest
-      continue-on-error: ${{ true }}
-      name: google fetch
-      steps:
-        - uses: actions/checkout@v2
-        - uses: ./.github/actions/fetch
     failed-job:
       runs-on: ubuntu-latest
       continue-on-error: ${{ true }}
@@ -18,7 +11,9 @@ jobs:
     env-echo:
       runs-on: ubuntu-latest
       if: ${{ true }}
-      needs: [fetch, failed-job]
+      needs: [failed-job]
       steps:
-        - run: echo $GITHUB_REPOSITORY
+        - run: echo $GITHUB_REPOSITORY && echo $MY_VAR
+          env: 
+            MY_VAR: some data in env var
     
