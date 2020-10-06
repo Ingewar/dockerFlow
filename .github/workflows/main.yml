@@ -7,7 +7,19 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - uses: ./.github/actions/fetch
+    failed-job:
+      runs-on: ubuntu-latest
+      name: job that always fails
+      steps:
+        - name: exit 1
+          run: exit 1
+    slack-notification:
+      runs-on: ubuntu-latest
+      if: ${{ true }}
+      needs: [fetch, failed-job]
+      steps:
         - uses: ./.github/actions/slack-notifications
           with:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
             MESSAGE: 'testing\n GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID'
+    
