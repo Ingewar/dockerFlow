@@ -34,6 +34,6 @@ jobs:
         - name: send FAILURE
           if: ${{ needs.successJob.result == 'failure' || needs.failedJob.result == 'failure' }}
           run: |
-            echo FAILURE
+            echo FAILURE 'Validations failed [open](https://github.com/${{github.repository}}/actions/runs/${{github.run_id}})'
 
     
