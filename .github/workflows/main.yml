@@ -13,16 +13,5 @@ jobs:
       if: ${{ true }}
       needs: [failed-job]
       steps:
-        - run: echo $GITHUB_REPOSITORY && echo $MY_VAR
-          env: 
-            MY_VAR: some data in env var
-    slack-notification:
-      runs-on: ubuntu-latest
-      needs: [env-echo]
-      steps:
-          - uses: actions/checkout@v2
-          - uses: ./.github/actions/slack-notifications
-            with:
-              SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-              MESSAGE: $GITHUB_REPOSITORY
+        - run: echo $GITHUB_REPOSITORY && echo $env
     
