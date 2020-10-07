@@ -1,6 +1,14 @@
 on: [push]
 
 jobs:
+    successJob:
+      runs-on: ubuntu-latest
+      continue-on-error: ${{ true }}
+      name: job that always fails
+      steps:
+        - name: exit 0
+          run: exit 0
+
     failedJob:
       runs-on: ubuntu-latest
       continue-on-error: ${{ true }}
@@ -8,17 +16,18 @@ jobs:
       steps:
         - name: exit 1
           run: exit 1
+
     env_echo:
       runs-on: ubuntu-latest
-      if: ${{ true }}
-      needs: [failedJob]
+      if: ${{ always() }}
+      needs: [failedJob, successJob]
       steps:
         - name: send DONE
-          if: ${{ needs.failedJob.result != 'failure' }}
+          if: ${{ needs.successJob.result != 'failure' }}
           run: |
             echo SUCCESS
         - name: send FAILURE
-          if: ${{ needs.failedJob.result == 'failure' }}
+          if: ${{ needs.successJob.result == 'failure' }}
           run: |
             echo FAILURE
 
