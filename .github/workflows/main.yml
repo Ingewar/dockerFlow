@@ -3,7 +3,6 @@ on: [push]
 jobs:
     successJob:
       runs-on: ubuntu-latest
-      continue-on-error: ${{ true }}
       name: job that always success
       steps:
         - name: exit 0
@@ -11,7 +10,6 @@ jobs:
 
     failedJob:
       runs-on: ubuntu-latest
-      continue-on-error: ${{ true }}
       name: job that always fails
       steps:
         - name: exit 1
