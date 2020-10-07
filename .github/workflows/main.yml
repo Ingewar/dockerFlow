@@ -11,7 +11,7 @@ jobs:
     env_echo:
       runs-on: ubuntu-latest
       if: ${{ true }}
-      needs: [failed-job]
+      needs: [failedJob]
       steps:
         - name: send DONE
           if: ${{ needs.failedJob.result != 'failure' }}
