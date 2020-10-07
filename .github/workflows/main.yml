@@ -23,7 +23,7 @@ jobs:
       needs: [failedJob, successJob]
       steps:
         - name: send DONE
-          if: ${{ needs.successJob.result != 'failure' && needs.failedJob.result != 'failure' }}
+          if: ${{ needs.successJob.result == success && needs.failedJob.result != success }}
           run: |
             echo SUCCESS
         - name: send FAILURE
