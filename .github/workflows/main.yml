@@ -28,13 +28,13 @@ jobs:
             echo 'needs.failedJob.result: ' ${{ needs.failedJob.result == 'success' }}
             echo ===
             echo ${{ needs.successJob.result == 'success' && needs.failedJob.result == 'success' }}
-            echo ${{ needs.successJob.result == 'failure' || needs.failedJob.result.result == 'failure' }}
+            echo ${{ needs.successJob.result == 'failure' || needs.failedJob.result == 'failure' }}
         - name: send DONE
           if: ${{ needs.successJob.result == 'success' && needs.failedJob.result == 'success' }}
           run: |
             echo SUCCESS
         - name: send FAILURE
-          if: ${{ needs.successJob.result == 'failure' || needs.failedJob.result.result == 'failure' }}
+          if: ${{ needs.successJob.result == 'failure' || needs.failedJob.result == 'failure' }}
           run: |
             echo FAILURE
 
