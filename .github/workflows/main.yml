@@ -13,5 +13,5 @@ jobs:
       if: ${{ true }}
       needs: [failed-job]
       steps:
-        - run: echo $GITHUB_REPOSITORY && echo ${{ needs[env_echo].status }}
+        - run: echo $GITHUB_REPOSITORY && echo ${{ needs.failed-job.status }}
     
