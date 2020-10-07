@@ -22,6 +22,7 @@ jobs:
       if: ${{ always() }}
       needs: [failedJob, successJob]
       steps:
+        - run: echo ${{ needs.successJob.result }}
         - name: send DONE
           if: ${{ needs.successJob.result == 'success' && needs.failedJob.result != 'success' }}
           run: |
