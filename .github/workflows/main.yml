@@ -25,6 +25,7 @@ jobs:
         - run: | 
             echo ${{ needs.successJob.result }}
             echo ${{ needs.successJob.result == 'success' }}
+            echo ${{ needs.successJob.result == 'failure' || needs.failedJob.result.result == 'failure' }}
         - name: send DONE
           if: ${{ needs.successJob.result == 'success' && needs.failedJob.result != 'success' }}
           run: |
