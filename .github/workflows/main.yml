@@ -1,7 +1,7 @@
 on: [push]
 
 jobs:
-    failed-job:
+    failedJob:
       runs-on: ubuntu-latest
       continue-on-error: ${{ true }}
       name: job that always fails
@@ -13,8 +13,13 @@ jobs:
       if: ${{ true }}
       needs: [failed-job]
       steps:
-        - run: |
-            echo $GITHUB_REPOSITORY && echo ${{ needs.failed-job.status }}
-            node src/test.js
+        - name: send DONE
+          if: ${{ needs.failedJob.result != 'failure' }}
+          run: |
+            echo SUCCESS
+        - name: send FAILURE
+          if: ${{ needs.failedJob.result == 'failure' }}
+          run: |
+            echo FAILURE
 
     
