@@ -8,10 +8,10 @@ jobs:
       steps:
         - name: exit 1
           run: exit 1
-    env-echo:
+    env_echo:
       runs-on: ubuntu-latest
       if: ${{ true }}
       needs: [failed-job]
       steps:
-        - run: echo $GITHUB_REPOSITORY && echo ${{ job.status }}
+        - run: echo $GITHUB_REPOSITORY && echo ${{ needs.env_echo.status }}
     
